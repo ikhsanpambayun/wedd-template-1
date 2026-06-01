@@ -116,7 +116,7 @@ export default function Page() {
   return (
     <main className="relative min-h-svh w-full overflow-hidden">
       <div
-        className="fixed inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+        className="fixed inset-0 -z-20 h-svh bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url("/images/opening/Opening-bg.jpg")`,
         }}
