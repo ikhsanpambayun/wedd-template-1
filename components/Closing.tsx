@@ -19,7 +19,7 @@ export default function ClosingSection() {
 
   return (
     <motion.section
-      className="flex min-h-svh flex-col items-center justify-center gap-4 px-8 text-center text-white"
+      className="flex min-h-lvh flex-col items-center justify-center gap-4 px-8 text-center text-white"
       initial="hidden"
       whileInView="visible"
       viewport={{

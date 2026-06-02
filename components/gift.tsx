@@ -34,7 +34,7 @@ export default function GiftSection() {
 
   return (
     <motion.section
-      className="flex min-h-svh flex-col items-center justify-center gap-4 px-6 py-50"
+      className="flex min-h-lvh flex-col items-center justify-center gap-4 px-6 py-50"
       variants={container}
       initial="hidden"
       whileInView="visible"

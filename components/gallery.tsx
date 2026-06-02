@@ -35,7 +35,7 @@ export default function GallerySection() {
   }
 
   return (
-    <section className="relative min-h-svh py-50">
+    <section className="relative min-h-lvh py-50">
       <motion.div
         className="mx-auto max-w-md"
         variants={container}

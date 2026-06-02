@@ -48,7 +48,7 @@ const Bride = () => {
   }
   return (
     <motion.section
-      className="relative flex min-h-svh w-full flex-col items-center justify-center text-center text-white"
+      className="relative flex min-h-lvh w-full flex-col items-center justify-center text-center text-white"
       variants={container}
       initial="hidden"
       whileInView="visible"

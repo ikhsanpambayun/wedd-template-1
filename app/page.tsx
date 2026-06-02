@@ -153,7 +153,7 @@ export default function Page() {
         </div>
 
         {/* Wedding Panel */}
-        <div className="relative h-svh w-full sm:aspect-[390/844] sm:h-screen sm:w-auto">
+        <div className="relative h-lvh w-full sm:aspect-[390/844] sm:h-screen sm:w-auto">
           {/* Fixed Background */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <div
@@ -174,7 +174,7 @@ export default function Page() {
           {/* Scroll Area */}
           <div className="relative z-20 h-full [scrollbar-width:none] overflow-x-hidden overflow-y-auto scroll-smooth [&::-webkit-scrollbar]:hidden">
             {!hasStarted && (
-              <div className="flex min-h-svh items-center justify-center">
+              <div className="flex min-h-lvh items-center justify-center">
                 <Button
                   onClick={handleClick}
                   disabled={!isLoaded}
@@ -196,7 +196,7 @@ export default function Page() {
               {showContent && (
                 <>
                   <motion.div
-                    className="flex min-h-svh flex-col items-center pt-44 text-center text-white"
+                    className="flex min-h-lvh flex-col items-center pt-44 text-center text-white"
                     variants={container}
                     initial="hidden"
                     animate="visible"
