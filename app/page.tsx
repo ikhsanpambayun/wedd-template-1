@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion, type Variants } from "framer-motion"
+import { EnvelopeIcon } from "@phosphor-icons/react"
+
 import SaveTheDateSection from "@/components/savethedate"
 import Bride from "@/components/bride"
 import Groom from "@/components/groom"
@@ -10,8 +12,6 @@ import GallerySection from "@/components/gallery"
 import GiftSection from "@/components/gift"
 import ClosingSection from "@/components/Closing"
 import { Button } from "@/components/ui/button"
-
-import { EnvelopeIcon } from "@phosphor-icons/react"
 
 export default function Page() {
   const images = [
@@ -39,6 +39,7 @@ export default function Page() {
     images.forEach((src) => {
       const img = new window.Image()
       img.src = src
+
       img.onload = () => {
         loadedCount += 1
         if (loadedCount === images.length) setIsLoaded(true)
@@ -114,112 +115,146 @@ export default function Page() {
   }
 
   return (
-    <main className="relative min-h-svh w-full overflow-hidden">
-      <div
-        className="fixed inset-0 -z-20 h-svh bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url("/images/opening/Opening-bg.jpg")`,
-        }}
-      />
-      <div
-        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url("${images[index]}")`,
-        }}
-      />
-      {!hasStarted && (
-        <div className="flex min-h-svh items-center justify-center">
-          <Button
-            onClick={handleClick}
-            disabled={!isLoaded}
-            className="text-md mt-60 rounded-full border-none bg-[#F7E7A9] px-8 py-5 text-[#8B5E3C] drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)] hover:bg-[#F3D98B]"
-          >
-            {!isLoaded ? (
-              "Loading..."
-            ) : (
-              <span className="flex items-center gap-2">
-                <EnvelopeIcon className="size-5" />
-                Buka Undangan
-              </span>
-            )}
-          </Button>
-        </div>
-      )}
-
-      <AnimatePresence>
-        {showContent && (
-          <motion.div
-            className="inset-0 flex h-svh flex-col items-center pt-44 text-center text-white"
-            variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{
-              once: true,
-              amount: 0.4,
+    <main className="min-h-screen">
+      <div className="flex min-h-screen justify-end">
+        {/* Left Desktop Area */}
+        <div className="relative hidden flex-1 overflow-hidden sm:block">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+              linear-gradient(
+                rgba(0,0,0,0.45),
+                rgba(0,0,0,0.45)
+              ),
+              url("/images/Desktop-bg.jpg")
+            `,
+              backgroundRepeat: "repeat",
+              backgroundSize: "220px",
             }}
-          >
-            <motion.p
-              variants={fadeUp}
-              className="font-montserrat text-sm font-medium tracking-wide text-[#FFF8F2] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]"
-            >
+          />
+
+          {/* Optional Branding Area */}
+          <div className="inset-0 hidden flex-col items-center justify-center text-center text-white md:absolute md:flex">
+            <p className="font-montserrat text-sm font-medium tracking-wide text-[#FFF8F2] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]">
               The Wedding Of
-            </motion.p>
+            </p>
 
-            <motion.h1
-              variants={fadeUp}
-              className="mt-4 text-center font-vibes text-7xl text-pink-100 drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]"
-            >
+            <h1 className="mt-4 font-vibes text-7xl text-pink-100 drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]">
               Lizi & Arif
-            </motion.h1>
+            </h1>
 
-            <motion.div
-              variants={zoomIn}
-              className="mt-4 flex w-full max-w-sm items-center justify-between gap-1"
-            >
-              <div className="h-auto w-auto">
-                <img
-                  src="/images/frame/Frame(1).png"
-                  alt="Bride"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              <div className="h-auto w-auto">
-                <img
-                  src="/images/frame/Frame(2).png"
-                  alt="Groom"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp}
-              className="mx-4 mt-6 rounded-full bg-black/15 px-6 py-2 shadow-xl backdrop-blur-xs"
-            >
+            <div className="mx-4 mt-10 rounded-full bg-black/15 px-6 py-2 shadow-xl backdrop-blur-xs">
               <p className="max-w-xs text-center font-montserrat text-sm leading-relaxed text-[#FFF8F2] drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]">
-                Makassar
-                <br />
-                26 January 2026
+                Makassar, 26 January 2026
               </p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </div>
+          </div>
+        </div>
 
-      {showContent && <Bride />}
+        {/* Wedding Panel */}
+        <div className="relative h-svh w-full sm:aspect-[390/844] sm:h-screen sm:w-auto">
+          {/* Fixed Background */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: 'url("/images/opening/Opening-bg.jpg")',
+              }}
+            />
 
-      {showContent && <Groom />}
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url("${images[index]}")`,
+              }}
+            />
+          </div>
 
-      {showContent && <SaveTheDateSection />}
+          {/* Scroll Area */}
+          <div className="relative z-20 h-full [scrollbar-width:none] overflow-x-hidden overflow-y-auto scroll-smooth [&::-webkit-scrollbar]:hidden">
+            {!hasStarted && (
+              <div className="flex min-h-svh items-center justify-center">
+                <Button
+                  onClick={handleClick}
+                  disabled={!isLoaded}
+                  className="text-md mt-60 rounded-full border-none bg-[#F7E7A9] px-8 py-5 text-[#8B5E3C] drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)] hover:bg-[#F3D98B]"
+                >
+                  {!isLoaded ? (
+                    "Loading..."
+                  ) : (
+                    <span className="flex items-center gap-2">
+                      <EnvelopeIcon className="size-5" />
+                      Buka Undangan
+                    </span>
+                  )}
+                </Button>
+              </div>
+            )}
 
-      {showContent && <GallerySection />}
+            <AnimatePresence>
+              {showContent && (
+                <>
+                  <motion.div
+                    className="flex min-h-svh flex-col items-center pt-44 text-center text-white"
+                    variants={container}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <motion.p
+                      variants={fadeUp}
+                      className="font-montserrat text-sm font-medium tracking-wide text-[#FFF8F2] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]"
+                    >
+                      The Wedding Of
+                    </motion.p>
 
-      {showContent && <RSVPSection />}
+                    <motion.h1
+                      variants={fadeUp}
+                      className="mt-4 font-vibes text-7xl text-pink-100 drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]"
+                    >
+                      Lizi & Arif
+                    </motion.h1>
 
-      {showContent && <GiftSection />}
+                    <motion.div
+                      variants={zoomIn}
+                      className="mt-10 flex w-full max-w-sm items-center justify-between gap-1"
+                    >
+                      <img
+                        src="/images/frame/Frame(1).png"
+                        alt="Bride"
+                        className="h-auto w-auto object-cover"
+                      />
 
-      {showContent && <ClosingSection />}
+                      <img
+                        src="/images/frame/Frame(2).png"
+                        alt="Groom"
+                        className="h-auto w-auto object-cover"
+                      />
+                    </motion.div>
+
+                    <motion.div
+                      variants={fadeUp}
+                      className="mx-4 mt-15 rounded-full bg-black/15 px-6 py-2 shadow-xl backdrop-blur-xs"
+                    >
+                      <p className="max-w-xs text-center font-montserrat text-sm leading-relaxed text-[#FFF8F2] drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]">
+                        Makassar, 26 January 2026
+                      </p>
+                    </motion.div>
+                  </motion.div>
+
+                  <Bride />
+                  <Groom />
+                  <SaveTheDateSection />
+                  <GallerySection />
+                  <RSVPSection />
+                  <GiftSection />
+                  <ClosingSection />
+                </>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
     </main>
   )
 }
